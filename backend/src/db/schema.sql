@@ -1,4 +1,4 @@
-create table accounts (
+CREATE TABLE IF NOT EXISTS accounts (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   email TEXT UNIQUE NOT NULL,
   access_level TEXT NOT NULL CHECK (access_level IN ('admin', 'user')),
@@ -6,7 +6,7 @@ create table accounts (
   created_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   account_id INTEGER NOT NULL,
   first_name TEXT NOT NULL,
@@ -18,19 +18,19 @@ CREATE TABLE users (
 );
 
 
-CREATE TABLE restaurant_settings (
+CREATE TABLE IF NOT EXISTS restaurant_settings (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   max_capacity INTEGER NOT NULL
 );
 
-CREATE TABLE services (
+CREATE TABLE IF NOT EXISTS services (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL CHECK (name IN ('lunch', 'dinner')),
   start_time TEXT NOT NULL,
   end_time TEXT NOT NULL
 );
 
-CREATE TABLE reservations (
+CREATE TABLE IF NOT EXISTS reservations (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id INTEGER NOT NULL,
   service_id INTEGER NOT NULL,
@@ -43,12 +43,12 @@ CREATE TABLE reservations (
   FOREIGN KEY (service_id) REFERENCES services(id)
 );
 
-CREATE TABLE categories (
+CREATE TABLE IF NOT EXISTS categories (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL
 );
 
-CREATE TABLE dishes (
+CREATE TABLE IF NOT EXISTS dishes (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   category_id INTEGER NOT NULL,
   title TEXT NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE dishes (
   FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
-CREATE TABLE menus (
+CREATE TABLE IF NOT EXISTS menus (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
   description TEXT NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE menus (
   created_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE gallery_images (
+CREATE TABLE IF NOT EXISTS gallery_images (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
   image_url TEXT NOT NULL,
