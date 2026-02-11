@@ -1,13 +1,67 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+US+Trad:wght@100..400&display=swap');
+
+.cormorant-upright-light {
+  font-family: "Cormorant Upright", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.cormorant-upright-regular {
+  font-family: "Cormorant Upright", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.cormorant-upright-medium {
+  font-family: "Cormorant Upright", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.cormorant-upright-semibold {
+  font-family: "Cormorant Upright", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.cormorant-upright-bold {
+  font-family: "Cormorant Upright", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  --color-ground-0: oklch(0.9215 0.022 92.52);
+  --color-ground-1: oklch(0.800 0.022 92.52);
+  --color-ground-2: oklch(0.600 0.022 92.52);
+  --color-ground-3: oklch(0.450 0.022 92.52);
+
+  --color-primary-0: oklch(0.642 0.022 32.08);
+  --color-primary-1: oklch(0.552 0.022 32.08);
+  --color-primary-2: oklch(0.45 0.022 32.08);
+  --color-primary-3: oklch(0.3042 0.022 32.08);
+
+  --color-secondary-0: oklch(0.642 0.0014 197.08);
+  --color-secondary-1: oklch(0.552 0.0014 197.08);
+  --color-secondary-2: oklch(0.45 0.0014 197.08);
+  --color-secondary-3: oklch(0.3042 0.0014 197.08);
+
+  --color-accent: #E07856;
+  --color-accent-hover: #D0694A;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,16 +69,23 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--color-primary-1);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--color-primary-2);
 }
 
 body {
+  color: var(--color-primary-2);
+  background-color: var(--color-ground-0);
+
   margin: 0;
   display: flex;
   place-items: center;
@@ -33,6 +94,8 @@ body {
 }
 
 h1 {
+  color: var(--color-primary-3);
+  font-family: "Cormorant Upright", serif;
   font-size: 3.2em;
   line-height: 1.1;
 }
@@ -44,13 +107,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-primary-2);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--color-primary-1);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -58,13 +122,14 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: var(--color-primary-3);
+    background-color: var(--color-ground-0);
   }
   a:hover {
-    color: #747bff;
+    color: var(--color-primary-2);
   }
   button {
-    background-color: #f9f9f9;
+    color: var(--color-ground-0);
+    background-color: var(--color-ground-1);
   }
 }

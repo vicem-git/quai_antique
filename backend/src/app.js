@@ -13,7 +13,9 @@ import reservationRoutes from './routes/reservation.routes.js';
 const app = express();
 
 // middlewares
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+}));
 app.use(express.json());
 
 // routes
