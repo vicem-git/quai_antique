@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import AuthContext from './AuthContext';
 import axios from 'axios';
+import { API } from '../utils/ApiCall';
 
 const TOKEN_KEY = 'auth_token'
-const API_URL = 'http://localhost:3000'
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default function AuthProvider({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -19,7 +20,7 @@ export default function AuthProvider({ children }) {
         }
 
         // validate token and get user info
-        axios.get(`${API_URL}/auth/me`, {
+        API.get('/auth/me', {
             headers: { Authorization: `Bearer ${token}` }
         })
         .then(res => {

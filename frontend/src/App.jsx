@@ -1,5 +1,7 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 // public pages
 import Home from './pages/Home'
@@ -15,9 +17,9 @@ import ProtectedLayout from './auth/ProtectedLayout'
 
 // user pages
 import UserDashboard from './pages/user/UserDashboard'
+import UserReservations from './pages/user/Reservations'
 
 // admin pages
-import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
 
 
@@ -25,6 +27,8 @@ import AdminDashboard from './pages/admin/AdminDashboard'
 function App() {
 
   return (
+    <>
+      <Header />
       <Routes>
         {/* public routes */}
         <Route path='/' element={<Home />} />
@@ -34,11 +38,11 @@ function App() {
         {/* auth routes */}
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/admin/login' element={<AdminLogin />} />
 
         {/* user routes */}
         <Route element={<ProtectedLayout allowedRoles={['user']} />}>
             <Route path='/user/dashboard' element={<UserDashboard />} />
+            <Route path='/user/reservations' element={<UserReservations />} />
         </Route>
 
         {/* admin routes */}
@@ -46,6 +50,8 @@ function App() {
             <Route path='/admin/dashboard' element={<AdminDashboard />} />
         </Route>
       </Routes>
+      <Footer />
+    </>
   )
 }
 

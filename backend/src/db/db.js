@@ -1,7 +1,7 @@
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import path from 'path';
-import fs from 'fs';
+import fs from 'fs/promises';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -16,7 +16,7 @@ export async function initDb() {
     driver: sqlite3.Database
   });
 
-  const schema = fs.readFile(schemaPath, 'utf8');
+  const schema = await fs.readFile(schemaPath, 'utf8');
   try {
     await db.exec(schema);
   } catch (error) {

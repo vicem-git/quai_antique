@@ -1,50 +1,12 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+US+Trad:wght@100..400&display=swap');
-
-.cormorant-upright-light {
-  font-family: "Cormorant Upright", serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.cormorant-upright-regular {
-  font-family: "Cormorant Upright", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.cormorant-upright-medium {
-  font-family: "Cormorant Upright", serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.cormorant-upright-semibold {
-  font-family: "Cormorant Upright", serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.cormorant-upright-bold {
-  font-family: "Cormorant Upright", serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.montserrat {
-  font-family: "Montserrat", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
+@import "tailwindcss";
 
 
-:root {
-  font-family: "Montserrat", sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@theme {
+  --font-montserrat: 'Montserrat', sans-serif;
+  --font-cormorant: 'Cormorant Upright', serif;
+  --font-playwrite: 'Playwrite US Trad', sans-serif;
 
-  color-scheme: light dark;
   --color-ground-0: oklch(0.9215 0.022 92.52);
   --color-ground-1: oklch(0.800 0.022 92.52);
   --color-ground-2: oklch(0.600 0.022 92.52);
@@ -60,9 +22,17 @@
   --color-secondary-2: oklch(0.45 0.0014 197.08);
   --color-secondary-3: oklch(0.3042 0.0014 197.08);
 
-  --color-accent: #E07856;
-  --color-accent-hover: #D0694A;
+  --color-accent: oklch(0.6832 0.1382 38.74);
+  --color-accent-hover: oklch(0.6359 0.1381 37.51);
+}
 
+:root {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
