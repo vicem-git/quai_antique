@@ -27,31 +27,35 @@ import AdminDashboard from './pages/admin/AdminDashboard'
 function App() {
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <Routes>
-        {/* public routes */}
-        <Route path='/' element={<Home />} />
-        <Route path='/menu' element={<Menu />} />
-        <Route path='/gallery' element={<Gallery />} />
+      <main className="flex-1 w-full">
+        <div className="mx-auto w-full max-w-[70%] py-8 px-4">
+          <Routes>
+            {/* public routes */}
+            <Route path='/' element={<Home />} />
+            <Route path='/menu' element={<Menu />} />
+            <Route path='/gallery' element={<Gallery />} />
 
-        {/* auth routes */}
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
+            {/* auth routes */}
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
 
-        {/* user routes */}
-        <Route element={<ProtectedLayout allowedRoles={['user']} />}>
-            <Route path='/user/dashboard' element={<UserDashboard />} />
-            <Route path='/user/reservations' element={<UserReservations />} />
-        </Route>
+            {/* user routes */}
+            <Route element={<ProtectedLayout allowedRoles={['user']} />}>
+                <Route path='/user/dashboard' element={<UserDashboard />} />
+                <Route path='/user/reservations' element={<UserReservations />} />
+            </Route>
 
-        {/* admin routes */}
-        <Route element={<ProtectedLayout allowedRoles={['admin']} />}>
-            <Route path='/admin/dashboard' element={<AdminDashboard />} />
-        </Route>
-      </Routes>
+            {/* admin routes */}
+            <Route element={<ProtectedLayout allowedRoles={['admin']} />}>
+                <Route path='/admin/dashboard' element={<AdminDashboard />} />
+            </Route>
+          </Routes>
+        </div>
+      </main>
       <Footer />
-    </>
+    </div>
   )
 }
 

@@ -16,21 +16,21 @@ const Home = () => {
         }}
       >
         <div className="z-10 max-w-3xl">
-          <h1 className="font-cormorant text-5xl md:text-6xl font-semibold text-ground0 drop-shadow-lg">
+          <h1 className="font-cormorant text-2xl md:text-5xl font-semibold text-ground-2">
             Quai Antique
           </h1>
-          <p className="text-lg md:text-xl font-medium text-ground0 drop-shadow mt-4">
+          <p className="text-lg md:text-xl font-medium text-ground-1 mt-4">
             Le Chef Arnaud Michant aime passionnément les produits - et producteurs - de la Savoie.
           </p>
-          <p className="mt-4 text-base md:text-lg text-ground0 drop-shadow">
+          <p className="mt-4 text-base md:text-lg text-ground-1">
             Cette cuisine se caractérise à ce jour à la fois par sa simplicité et l'utilisation de produits locaux,
             à base en grande partie de charcuteries et fromages de montagne savoyarde.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <Link to="/user/reservations" className="inline-block bg-accent text-ground0 font-semibold px-6 py-2 rounded-lg transition hover:bg-accent-hover">
+            <Link to="/user/reservations" className="inline-block bg-accent-2 text-ground-1 font-semibold px-6 py-2 rounded-lg transition hover:bg-accent-0">
                 Réserver une table
             </Link>
-            <Link to="/menu" className="inline-block bg-primary2 text-ground0 font-medium px-6 py-2 rounded-lg transition hover:bg-primary1">
+            <Link to="/menu" className="inline-block bg-accent-2 text-ground-1 font-semibold px-6 py-2 rounded-lg transition hover:bg-accent-0">
                 Découvrir la carte
             </Link>
           </div>
@@ -60,7 +60,7 @@ const Home = () => {
           <p className="text-lg opacity-90 mb-6">Service du midi et du soir</p>
           <Link
             to="/user/reservations"
-            className="inline-block text-accent font-playwrite text-5xl font-bold py-4 px-10 rounded transform -rotate-3 hover:scale-105 transition"
+            className="inline-block text-accent-1 font-playwrite text-5xl font-bold py-4 px-10 rounded transform -rotate-3 hover:scale-105 transition"
           >
             réservez !
           </Link>

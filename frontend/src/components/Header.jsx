@@ -12,23 +12,23 @@ const Header = () => {
 
   const linkClass = ({ isActive }) =>
     `transition ${
-      isActive ? "opacity-100" : "opacity-80 hover:opacity-100"
+      isActive ? "opacity-100" : "opacity-70 hover:opacity-100"
     }`
 
   return (
-    <header className="bg-ground0 border-b border-primary3/30">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <header className="w-full ">
+      <div className="mx-auto w-full max-w-[70%] px-6 py-10 flex items-center justify-between border-b border-primary-3/30 mb-6">
         
         {/* Logo / Brand */}
         <Link
           to="/"
-          className="font-cormorant text-2xl font-semibold text-primary3"
+          className="font-cormorant text-5xl font-semibold text-primary-3"
         >
           Quai Antique
         </Link>
 
         {/* Navigation */}
-        <nav className="flex items-center gap-6 text-sm text-primary3">
+        <nav className="flex items-center gap-6 text-base font-semibold text-primary-3">
           <NavLink to="/" className={linkClass}>
             Accueil
           </NavLink>
@@ -65,7 +65,7 @@ const Header = () => {
           {isAuthenticated && (
             <button
               onClick={handleLogout}
-              className="ml-4 rounded border border-primary3 px-3 py-1 text-xs hover:bg-primary3 hover:text-ground0 transition"
+              className="ml-4 rounded border border-primary-3 px-3 py-1 text-xs hover:bg-primary-3 hover:text-ground-0 transition"
             >
               Déconnexion
             </button>
