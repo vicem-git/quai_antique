@@ -60,7 +60,7 @@ const Home = () => {
           <p className="text-lg opacity-90 mb-6">Service du midi et du soir</p>
           <Link
             to="/user/reservations"
-            className="inline-block text-accent-1 font-playwrite text-5xl font-bold py-4 px-10 rounded transform -rotate-3 hover:scale-105 transition"
+            className="inline-block text-accent-1 font-playwrite text-5xl font-bold rounded transform -rotate-3 hover:scale-105 transition"
           >
             réservez !
           </Link>
