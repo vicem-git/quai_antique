@@ -9,16 +9,8 @@ export default function ReservationsAdmin() {
   async function fetchReservations(selectedDate = "") {
     setLoading(true)
     try {
-      const token = localStorage.getItem("token")
-
       const query = selectedDate ? `?date=${selectedDate}` : ""
-      const res = await API.get(`/reservations/admin/all${query}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      const res = await API.get(`/reservations/admin/all${query}`)
       
       setReservations(res.data)
     } catch (err) {

@@ -84,7 +84,8 @@ export default function AdminDashboard() {
         <section>
           {activeTab === "restaurant" && <RestaurantSettings />}
           {activeTab === "gallery" && <GalleryAdmin />}
-          {/* {activeTab === "reservations" && <ReservationsAdmin />} */}
+          {activeTab === "menu" && <MenuSettings />}
+          {activeTab === "reservations" && <ReservationsAdmin />}
         </section>
 
       </div>

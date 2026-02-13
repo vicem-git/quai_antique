@@ -7,6 +7,8 @@ export default function GalleryAdmin() {
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(true)
   const [uploading, setUploading] = useState(false)
+  const [error, setError] = useState("")
+  const [message, setMessage] = useState("")
 
   useEffect(() => {
     fetchImages()
@@ -25,7 +27,17 @@ export default function GalleryAdmin() {
 
   const handleUpload = async (e) => {
     e.preventDefault()
-    if (!file || !title) return
+    setError("")
+    setMessage("")
+
+    if (!title.trim()) {
+      setError("Veuillez saisir un titre.")
+      return
+    }
+    if (!file) {
+      setError("Veuillez sélectionner une image.")
+      return
+    }
 
     const formData = new FormData()
     formData.append("title", title)
@@ -33,16 +45,15 @@ export default function GalleryAdmin() {
 
     try {
       setUploading(true)
-      const res = await API.post("/gallery/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" }
-      })
+      const res = await API.post("/gallery/upload", formData)
 
       setImages(prev => [res.data, ...prev])
       setTitle("")
       setFile(null)
+      setMessage("Image ajoutée.")
     } catch (err) {
       console.error("Upload error:", err)
-      alert("Erreur upload image")
+      setError("Erreur upload image.")
     } finally {
       setUploading(false)
     }
@@ -78,6 +89,9 @@ export default function GalleryAdmin() {
       {/* Upload */}
       <section>
         <h2 className="text-xl mb-4">Ajouter une image</h2>
+
+        {error && <p className="text-red-600 mb-2">{error}</p>}
+        {message && <p className="text-green-600 mb-2">{message}</p>}
 
         <form onSubmit={handleUpload} className="flex flex-col sm:flex-row gap-4">
           <input
