@@ -1,119 +1,142 @@
-import { useEffect, useState } from "react"
-import { API } from "../../../utils/ApiCall"
-
-export default function RestaurantSettings() {
-  const [maxCapacity, setMaxCapacity] = useState("")
-  const [services, setServices] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [saving, setSaving] = useState(false)
+// src/pages/admin/tabs/AdminRestaurantSettingsTab.jsx
+import { useState, useEffect } from "react";
+import { API } from "../../../utils/ApiCall";
+  
+export default function AdminRestaurantSettingsTab() {
+  const [maxCapacity, setMaxCapacity] = useState(0);
+  const [services, setServices] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [savingCapacity, setSavingCapacity] = useState(false);
+  const [savingService, setSavingService] = useState({}); // track saving per service id
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    API.get("/settings")
-      .then(res => {
-        setMaxCapacity(res.data.maxCapacity)
-        setServices(res.data.services)
-      })
-      .catch(err => console.error("Settings load error:", err))
-      .finally(() => setLoading(false))
-  }, [])
+    const fetchSettings = async () => {
+      try {
+        const resSettings = await API.get("/settings");
+        setMaxCapacity(resSettings.data.maxCapacity);
 
-  const updateCapacity = async () => {
+        const resServices = await API.get("/settings/services");
+        setServices(resServices.data);
+      } catch (err) {
+        console.error("Error fetching settings:", err);
+        setError("Failed to load settings.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSettings();
+  }, []);
+
+  const handleCapacityUpdate = async () => {
+    setSavingCapacity(true);
     try {
-      setSaving(true)
-      await API.put("/settings/capacity", { maxCapacity })
-      alert("Capacité mise à jour")
+      await API.put("/settings/capacity", { maxCapacity });
+      alert("Max capacity updated!");
     } catch (err) {
-      console.error(err)
-      alert("Erreur lors de la mise à jour")
+      console.error(err);
+      alert("Failed to update capacity.");
     } finally {
-      setSaving(false)
+      setSavingCapacity(false);
     }
-  }
+  };
 
-  const updateService = async (id, startTime, endTime) => {
+  const handleServiceChange = (day, id, field, value) => {
+    setServices((prev) => ({
+      ...prev,
+      [day]: prev[day].map((s) =>
+        s.id === id ? { ...s, [field]: value } : s
+      ),
+    }));
+  };
+
+  const handleServiceUpdate = async (service) => {
+    setSavingService((prev) => ({ ...prev, [service.id]: true }));
     try {
-      await API.put(`/settings/services/${id}`, { startTime, endTime })
-      alert("Service mis à jour")
+      await API.put(`/settings/services/${service.id}`, {
+        startTime: service.start_time,
+        endTime: service.end_time,
+      });
+      alert(`Service ${service.name} updated!`);
     } catch (err) {
-      console.error(err)
-      alert("Erreur service")
+      console.error(err);
+      alert("Failed to update service.");
+    } finally {
+      setSavingService((prev) => ({ ...prev, [service.id]: false }));
     }
-  }
+  };
 
-  if (loading) return <p>Chargement…</p>
+  if (loading) return <p>Loading settings...</p>;
+  if (error) return <p className="text-red-600">{error}</p>;
 
   return (
-    <div className="space-y-10">
-
-      {/* Max capacity */}
-      <section>
-        <h2 className="text-xl mb-4">Capacité maximale</h2>
-
+    <div className="space-y-8">
+      {/* MAX CAPACITY */}
+      <section className="bg-ground-1 p-6 rounded shadow">
+        <h3 className="text-xl font-semibold mb-4">Restaurant Settings</h3>
         <div className="flex items-center gap-4">
+          <label className="font-medium">Max Guests:</label>
           <input
             type="number"
-            min="1"
+            min={1}
             value={maxCapacity}
-            onChange={e => setMaxCapacity(e.target.value)}
-            className="w-32 border rounded-md px-3 py-2"
+            onChange={(e) => setMaxCapacity(Number(e.target.value))}
+            className="border bg-ground-0 px-2 py-1 rounded w-20"
           />
           <button
-            onClick={updateCapacity}
-            disabled={saving}
-            className="px-4 py-2 rounded-md bg-primary-2 text-ground-0"
+            onClick={handleCapacityUpdate}
+            disabled={savingCapacity}
+            className="bg-primary-1 hover:bg-primary-2 text-ground-0 px-4 py-1 rounded"
           >
-            Enregistrer
+            {savingCapacity ? "Saving..." : "Save"}
           </button>
         </div>
       </section>
 
-      {/* Services */}
-      <section>
-        <h2 className="text-xl mb-4">Horaires des services</h2>
-
-        <div className="space-y-6">
-          {services.map(service => (
-            <ServiceRow
-              key={service.id}
-              service={service}
-              onSave={updateService}
-            />
-          ))}
-        </div>
+      {/* SERVICES */}
+      <section className="bg-ground-1 p-6 rounded shadow space-y-6">
+        <h3 className="text-xl font-semibold">Daily Services</h3>
+        {Object.keys(services).map((day) => (
+          <div key={day} className="space-y-2">
+            <h4 className="font-semibold">{day}</h4>
+            <div className="flex flex-wrap gap-4">
+              {services[day].map((service) => (
+                <div
+                  key={service.id}
+                  className="flex items-center gap-2 border p-2 rounded bg-ground-0"
+                >
+                  <span className="capitalize font-medium">{service.name}</span>
+                  <input
+                    type="time"
+                    value={service.start_time}
+                    onChange={(e) =>
+                      handleServiceChange(day, service.id, "start_time", e.target.value)
+                    }
+                    className="border px-2 py-1 rounded"
+                  />
+                  <span>-</span>
+                  <input
+                    type="time"
+                    value={service.end_time}
+                    onChange={(e) =>
+                      handleServiceChange(day, service.id, "end_time", e.target.value)
+                    }
+                    className="border px-2 py-1 rounded"
+                  />
+                  <button
+                    onClick={() => handleServiceUpdate(service)}
+                    disabled={savingService[service.id]}
+                    className="bg-primary-1 hover:bg-primary-2 text-ground-0 px-3 py-1 rounded"
+                  >
+                    {savingService[service.id] ? "Saving..." : "Save"}
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
-
     </div>
-  )
-}
-
-function ServiceRow({ service, onSave }) {
-  const [startTime, setStartTime] = useState(service.start_time)
-  const [endTime, setEndTime] = useState(service.end_time)
-
-  return (
-    <div className="border rounded-md p-4 flex flex-col sm:flex-row sm:items-center gap-4">
-      <strong className="w-40">{service.name}</strong>
-
-      <input
-        type="time"
-        value={startTime}
-        onChange={e => setStartTime(e.target.value)}
-        className="border rounded-md px-2 py-1"
-      />
-
-      <input
-        type="time"
-        value={endTime}
-        onChange={e => setEndTime(e.target.value)}
-        className="border rounded-md px-2 py-1"
-      />
-
-      <button
-        onClick={() => onSave(service.id, startTime, endTime)}
-        className="px-3 py-1 rounded-md bg-primary-2 text-ground-0"
-      >
-        Sauvegarder
-      </button>
-    </div>
-  )
+  );
 }

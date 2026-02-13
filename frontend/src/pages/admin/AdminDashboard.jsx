@@ -39,7 +39,7 @@ export default function AdminDashboard() {
               px-4 py-2
               rounded-lg
               border border-neutral-300
-              bg-white
+              bg-ground-1
             "
           >
             <span>{current.label}</span>
@@ -56,7 +56,7 @@ export default function AdminDashboard() {
                 absolute z-20 mt-2 w-full
                 rounded-lg
                 border border-neutral-200
-                bg-white
+                bg-ground-1
                 shadow
               "
             >

@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS restaurant_settings (
 CREATE TABLE IF NOT EXISTS services (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL CHECK (name IN ('lunch', 'dinner')),
+  day_of_week TEXT NOT NULL CHECK (day_of_week IN ('Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')) DEFAULT 'Tuesday',
   start_time TEXT NOT NULL,
   end_time TEXT NOT NULL
 );

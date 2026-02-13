@@ -48,11 +48,47 @@ router.put('/capacity', verifyToken, requireAdmin, async (req, res) => {
 });
 
 // Get all services
-router.get('/services', async (req, res) => {
+router.get('/services', verifyToken, requireAdmin, async (req, res) => {
   try {
     const db = getDb();
-    const services = await db.all('SELECT * FROM services ORDER BY name');
-    res.json(services);
+    // Check if services exist
+    const count = await db.get('SELECT COUNT(*) as total FROM services');
+    
+    if (count.total === 0) {
+      // No services -> auto-create defaults
+      const days = ['Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+      const shifts = [
+        { name: 'lunch', start: '12:00', end: '14:00' },
+        { name: 'dinner', start: '19:00', end: '21:00' }
+      ];
+
+      for (const day of days) {
+        for (const shift of shifts) {
+          await db.run(
+            'INSERT INTO services (name, day_of_week, start_time, end_time) VALUES (?, ?, ?, ?)',
+            [shift.name, day, shift.start, shift.end]
+          );
+        }
+      }
+    }
+
+    // Fetch all services after ensuring they exist
+    const services = await db.all('SELECT * FROM services ORDER BY day_of_week, name');
+
+    // Optional: group by day for frontend convenience
+    const grouped = {};
+    services.forEach(s => {
+      if (!grouped[s.day_of_week]) grouped[s.day_of_week] = [];
+      grouped[s.day_of_week].push({
+        id: s.id,
+        name: s.name,
+        start_time: s.start_time,
+        end_time: s.end_time
+      });
+    });
+
+    res.json(grouped);
+
   } catch (err) {
     console.error('Get services error:', err);
     res.status(500).json({ error: 'Failed to fetch services' });
