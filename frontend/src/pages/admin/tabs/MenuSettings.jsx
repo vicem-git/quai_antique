@@ -106,8 +106,8 @@ export default function MenuAdmin() {
         onChange={(e) => setSection(e.target.value)}
         className="w-full p-2 border rounded"
       >
-        <option value={SECTIONS.CATEGORIES}>Categories</option>
-        <option value={SECTIONS.DISHES}>Dishes</option>
+        <option value={SECTIONS.CATEGORIES}>Catégories</option>
+        <option value={SECTIONS.DISHES}>Plats</option>
         <option value={SECTIONS.MENUS}>Menus</option>
       </select>
 
@@ -118,12 +118,12 @@ export default function MenuAdmin() {
             <input
               value={categoryTitle}
               onChange={(e) => setCategoryTitle(e.target.value)}
-              placeholder="Category title"
+              placeholder="Titre catégorie"
               className="flex-1 p-2 border rounded"
               required
             />
             <button className="px-4 py-2 bg-black text-white rounded">
-              Add
+              Ajouter
             </button>
           </form>
 
@@ -135,7 +135,7 @@ export default function MenuAdmin() {
                   onClick={() => deleteItem(`/menu/categories/${c.id}`)}
                   className="text-red-600"
                 >
-                  Delete
+                  Supprimer
                 </button>
               </li>
             ))}

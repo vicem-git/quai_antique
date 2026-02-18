@@ -63,7 +63,7 @@ export default function Menu() {
                   <h3 className="text-lg font-semibold">{group.title}</h3>
                   <ul className="space-y-3">
                     {group.items.map((d) => (
-                      <li key={d.id} className="border rounded p-3">
+                      <li key={d.id} className="border rounded p-3 bg-ground-1">
                         <div className="flex justify-between">
                           <strong>{d.title}</strong>
                           <span className="font-semibold">{d.price} €</span>
@@ -86,7 +86,7 @@ export default function Menu() {
             ) : (
               <ul className="space-y-3">
                 {menus.map((m) => (
-                  <li key={m.id} className="border rounded p-3">
+                  <li key={m.id} className="border rounded p-3 bg-ground-1">
                     <div className="flex justify-between">
                       <strong>{m.title}</strong>
                       <span className="font-semibold">{m.price} €</span>

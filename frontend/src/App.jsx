@@ -32,22 +32,22 @@ function App() {
       <main className="flex-1 w-full">
         <div className="mx-auto w-full md:max-w-[70%] py-8 px-4">
           <Routes>
-            {/* public routes */}
+            {/* routes publiques */}
             <Route path='/' element={<Home />} />
             <Route path='/menu' element={<Menu />} />
             <Route path='/gallery' element={<Gallery />} />
 
-            {/* auth routes */}
+            {/* routes  auth */}
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
 
-            {/* user routes */}
+            {/* routes utilisateur */}
             <Route element={<ProtectedLayout allowedRoles={['user']} />}>
                 <Route path='/user/dashboard' element={<UserDashboard />} />
                 <Route path='/user/reservations' element={<UserReservations />} />
             </Route>
 
-            {/* admin routes */}
+            {/* routes admin */}
             <Route element={<ProtectedLayout allowedRoles={['admin']} />}>
                 <Route path='/admin/dashboard' element={<AdminDashboard />} />
             </Route>

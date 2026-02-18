@@ -18,3 +18,5 @@ export default function ProtectedLayout({ allowedRoles }) {
 
     return <Outlet />
 }
+
+

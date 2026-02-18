@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import AuthContext from './AuthContext';
-import axios from 'axios';
 import { API } from '../utils/ApiCall';
 
 const TOKEN_KEY = 'auth_token'

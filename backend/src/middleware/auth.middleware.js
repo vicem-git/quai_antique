@@ -2,6 +2,18 @@ import jwt from 'jsonwebtoken';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secret_key_change_this';
 
+export function generateToken(account) {
+  return jwt.sign(
+    {
+      id: account.id,
+      email: account.email,
+      access_level: account.access_level
+    },
+    JWT_SECRET,
+    { expiresIn: '24h' }
+  );
+}
+
 export function verifyToken(req, res, next) {
   const authHeader = req.headers.authorization;
 
@@ -36,14 +48,4 @@ export function requireUser(req, res, next) {
   next();
 }
 
-export function generateToken(account) {
-  return jwt.sign(
-    {
-      id: account.id,
-      email: account.email,
-      access_level: account.access_level
-    },
-    JWT_SECRET,
-    { expiresIn: '24h' }
-  );
-}
+

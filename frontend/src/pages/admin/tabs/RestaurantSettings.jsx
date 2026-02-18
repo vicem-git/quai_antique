@@ -74,9 +74,9 @@ export default function AdminRestaurantSettingsTab() {
     <div className="space-y-8">
       {/* MAX CAPACITY */}
       <section className="bg-ground-1 p-6 rounded shadow">
-        <h3 className="text-xl font-semibold mb-4">Restaurant Settings</h3>
+        <h3 className="text-xl font-semibold mb-4">Paramètres du restaurant</h3>
         <div className="flex items-center gap-4">
-          <label className="font-medium">Max Guests:</label>
+          <label className="font-medium">Max Convives:</label>
           <input
             type="number"
             min={1}
@@ -89,14 +89,14 @@ export default function AdminRestaurantSettingsTab() {
             disabled={savingCapacity}
             className="bg-primary-1 hover:bg-primary-2 text-ground-0 px-4 py-1 rounded"
           >
-            {savingCapacity ? "Saving..." : "Save"}
+            {savingCapacity ? "Saving..." : "Sauvegarder"}
           </button>
         </div>
       </section>
 
       {/* SERVICES */}
       <section className="bg-ground-1 p-6 rounded shadow space-y-6">
-        <h3 className="text-xl font-semibold">Daily Services</h3>
+        <h3 className="text-xl font-semibold">Services par jour</h3>
         {Object.keys(services).map((day) => (
           <div key={day} className="space-y-2">
             <h4 className="font-semibold">{day}</h4>
@@ -129,7 +129,7 @@ export default function AdminRestaurantSettingsTab() {
                     disabled={savingService[service.id]}
                     className="bg-primary-1 hover:bg-primary-2 text-ground-0 px-3 py-1 rounded"
                   >
-                    {savingService[service.id] ? "Saving..." : "Save"}
+                    {savingService[service.id] ? "Saving..." : "Sauvegarder"}
                   </button>
                 </div>
               ))}

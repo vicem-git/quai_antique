@@ -7,10 +7,10 @@ import ReservationsAdmin from "./tabs/ReservationsAdmin"
 import GalleryAdmin from "./tabs/GalleryAdmin"
 
 const TABS = [
-  { key: "restaurant", label: "Restaurant settings" },
-  { key: "gallery", label: "Gallery" },
+  { key: "restaurant", label: "Paramètres du restaurant" },
+  { key: "gallery", label: "Galerie" },
   { key: "menu", label: "Carte / Menu" },
-  { key: "reservations", label: "Reservations" },
+  { key: "reservations", label: "Réservations" },
 ]
 
 export default function AdminDashboard() {
@@ -26,7 +26,7 @@ export default function AdminDashboard() {
         
         {/* page title */}
         <h1 className="text-2xl font-semibold mb-6">
-          Admin dashboard
+          Tableau Admin
         </h1>
 
         {/* section selector */}
