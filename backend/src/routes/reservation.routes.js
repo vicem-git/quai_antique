@@ -265,7 +265,7 @@ router.delete('/:id', verifyToken, requireUser, async (req, res) => {
 
 // ============ ADMIN ROUTES ============
 
-// Get all reservations (admin only) with optional date filter
+// Get all reservations (admin only) 
 router.get('/admin/all', verifyToken, requireAdmin, async (req, res) => {
   try {
     const { date } = req.query;

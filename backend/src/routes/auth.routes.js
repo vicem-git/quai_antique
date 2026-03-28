@@ -5,7 +5,6 @@ import { verifyToken, generateToken } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
-// test endpoint to '/' 
 router.post('/register', async (req, res) => {
   try {
     const { email, password, firstName, lastName } = req.body;
