@@ -129,11 +129,11 @@ export default function MenuAdmin() {
 
           <ul className="space-y-2">
             {categories.map((c) => (
-              <li key={c.id} className="flex justify-between border p-2 rounded">
-                <span>{c.title}</span>
+              <li key={c.id} className="flex justify-between gap-2 border p-2 rounded">
+                <span className="min-w-0 truncate">{c.title}</span>
                 <button
                   onClick={() => deleteItem(`/menu/categories/${c.id}`)}
-                  className="text-red-600"
+                  className="text-red-600 shrink-0"
                 >
                   Supprimer
                 </button>
@@ -202,11 +202,11 @@ export default function MenuAdmin() {
           <ul className="space-y-2">
             {dishes.map((d) => (
               <li key={d.id} className="border p-2 rounded">
-                <div className="flex justify-between">
-                  <strong>{d.title}</strong>
+                <div className="flex justify-between gap-2">
+                  <strong className="min-w-0 truncate">{d.title}</strong>
                   <button
                     onClick={() => deleteItem(`/menu/dishes/${d.id}`)}
-                    className="text-red-600"
+                    className="text-red-600 shrink-0"
                   >
                     Delete
                   </button>
@@ -263,15 +263,15 @@ export default function MenuAdmin() {
 
           <ul className="space-y-2">
             {menus.map((m) => (
-              <li key={m.id} className="flex justify-between border p-2 rounded">
-                <div>
-                  <strong>{m.title}</strong>
+              <li key={m.id} className="flex justify-between gap-2 border p-2 rounded">
+                <div className="min-w-0">
+                  <strong className="block truncate">{m.title}</strong>
                   <p className="text-sm">{m.description}</p>
                   <p className="text-sm font-semibold">{m.price} €</p>
                 </div>
                 <button
                   onClick={() => deleteItem(`/menu/menus/${m.id}`)}
-                  className="text-red-600"
+                  className="text-red-600 shrink-0"
                 >
                   Delete
                 </button>

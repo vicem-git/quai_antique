@@ -75,7 +75,7 @@ export default function AdminRestaurantSettingsTab() {
       {/* MAX CAPACITY */}
       <section className="bg-ground-1 p-6 rounded shadow">
         <h3 className="text-xl font-semibold mb-4">Paramètres du restaurant</h3>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <label className="font-medium">Max Convives:</label>
           <input
             type="number"
@@ -104,30 +104,32 @@ export default function AdminRestaurantSettingsTab() {
               {services[day].map((service) => (
                 <div
                   key={service.id}
-                  className="flex items-center gap-2 border p-2 rounded bg-ground-0"
+                  className="flex flex-col sm:flex-row sm:items-center gap-2 border p-3 rounded bg-ground-0"
                 >
                   <span className="capitalize font-medium">{service.name}</span>
-                  <input
-                    type="time"
-                    value={service.start_time}
-                    onChange={(e) =>
-                      handleServiceChange(day, service.id, "start_time", e.target.value)
-                    }
-                    className="border px-2 py-1 rounded"
-                  />
-                  <span>-</span>
-                  <input
-                    type="time"
-                    value={service.end_time}
-                    onChange={(e) =>
-                      handleServiceChange(day, service.id, "end_time", e.target.value)
-                    }
-                    className="border px-2 py-1 rounded"
-                  />
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="time"
+                      value={service.start_time}
+                      onChange={(e) =>
+                        handleServiceChange(day, service.id, "start_time", e.target.value)
+                      }
+                      className="border px-2 py-1 rounded"
+                    />
+                    <span>-</span>
+                    <input
+                      type="time"
+                      value={service.end_time}
+                      onChange={(e) =>
+                        handleServiceChange(day, service.id, "end_time", e.target.value)
+                      }
+                      className="border px-2 py-1 rounded"
+                    />
+                  </div>
                   <button
                     onClick={() => handleServiceUpdate(service)}
                     disabled={savingService[service.id]}
-                    className="bg-primary-1 hover:bg-primary-2 text-ground-0 px-3 py-1 rounded"
+                    className="bg-primary-1 hover:bg-primary-2 text-ground-0 px-3 py-1 rounded whitespace-nowrap"
                   >
                     {savingService[service.id] ? "Saving..." : "Sauvegarder"}
                   </button>

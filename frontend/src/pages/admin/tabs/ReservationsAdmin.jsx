@@ -56,7 +56,7 @@ export default function ReservationsAdmin() {
         <p className="text-neutral-500">No reservations found.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
+          <table className="w-full min-w-max border-collapse">
             <thead>
               <tr className="border-b text-left text-sm text-neutral-500">
                 <th className="py-2 pr-4">Date</th>

@@ -16,7 +16,7 @@ const Home = () => {
         }}
       >
         <div className="z-10 max-w-3xl">
-          <h1 className="font-cormorant text-2xl md:text-5xl font-semibold text-ground-2">
+          <h1 className="font-cormorant text-2xl sm:text-3xl md:text-5xl font-semibold text-ground-2">
             Quai Antique
           </h1>
           <p className="text-lg md:text-xl font-medium text-ground-1 mt-4">
@@ -40,7 +40,7 @@ const Home = () => {
       {/* About */}
       <section className="bg-ground0 px-4 py-20 text-center">
         <div className="max-w-3xl mx-auto">
-          <h2 className="font-cormorant text-4xl text-primary3 mb-8">Une Expérience Gastronomique</h2>
+          <h2 className="font-cormorant text-2xl sm:text-4xl text-primary3 mb-8">Une Expérience Gastronomique</h2>
           <p className="text-lg text-primary2 mb-4">
             Le Quai Antique est installé à Chambéry et propose au déjeuner comme au dîner
             une expérience gastronomique, à travers une cuisine sans artifice.
@@ -55,7 +55,7 @@ const Home = () => {
       {/* Hours / Reservation */}
       <section className="px-4 py-20 text-center bg-ground0">
         <div className="max-w-xl mx-auto p-12 rounded-xl bg-transparent text-primary3">
-          <h2 className="font-cormorant text-4xl mb-6">Horaires d'ouverture</h2>
+          <h2 className="font-cormorant text-2xl sm:text-4xl mb-6">Horaires d'ouverture</h2>
           <p className="text-xl font-medium mb-1">Ouvert du mardi au dimanche</p>
           <p className="text-lg opacity-90 mb-6">Service du midi et du soir</p>
           <Link
