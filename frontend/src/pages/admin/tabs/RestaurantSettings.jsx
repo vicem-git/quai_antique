@@ -107,23 +107,23 @@ export default function AdminRestaurantSettingsTab() {
                   className="flex flex-col sm:flex-row sm:items-center gap-2 border p-3 rounded bg-ground-0"
                 >
                   <span className="capitalize font-medium">{service.name}</span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1 w-full">
                     <input
                       type="time"
                       value={service.start_time}
                       onChange={(e) =>
                         handleServiceChange(day, service.id, "start_time", e.target.value)
                       }
-                      className="border px-2 py-1 rounded"
+                      className="border px-2 py-1 rounded flex-1 min-w-0"
                     />
-                    <span>-</span>
+                    <span className="shrink-0">-</span>
                     <input
                       type="time"
                       value={service.end_time}
                       onChange={(e) =>
                         handleServiceChange(day, service.id, "end_time", e.target.value)
                       }
-                      className="border px-2 py-1 rounded"
+                      className="border px-2 py-1 rounded flex-1 min-w-0"
                     />
                   </div>
                   <button

@@ -104,7 +104,7 @@ router.post(
         return res.status(400).json({ error: 'Erreur image' });
       }
 
-      const imageUrl = `${req.protocol}://${req.get('host')}/uploads/gallery/${req.file.filename}`;
+      const imageUrl = `/uploads/gallery/${req.file.filename}`;
       const db = getDb();
 
       const result = await db.run(
@@ -198,7 +198,7 @@ router.put(
       }
 
       const newTitle = req.body.title ?? existing.title;
-      const imageUrl = `${req.protocol}://${req.get('host')}/uploads/gallery/${req.file.filename}`;
+      const imageUrl = `/uploads/gallery/${req.file.filename}`;
 
       const result = await db.run(
         'UPDATE gallery_images SET title = ?, image_url = ? WHERE id = ?',
